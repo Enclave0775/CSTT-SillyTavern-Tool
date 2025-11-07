@@ -8,8 +8,13 @@ import json
 from opencc import OpenCC
 
 class PNGBatchConverter:
-    def __init__(self):
-        self.cc = OpenCC('s2t')
+    def __init__(self, mode='s2t'):
+        """
+        初始化轉換器
+        mode: 's2t' (簡轉繁) 或 't2s' (繁轉簡)
+        """
+        self.mode = mode
+        self.cc = OpenCC(mode)
         self.ensure_folders()
     
     def ensure_folders(self):
@@ -182,7 +187,9 @@ class PNGBatchConverter:
             print("⚠️  original 資料夾中沒有找到 PNG 或 JSON 文件")
             return
         
+        mode_text = "簡體中文 → 繁體中文" if self.mode == 's2t' else "繁體中文 → 簡體中文"
         total_files = len(png_files) + len(json_files)
+        print(f"轉換模式: {mode_text}")
         print(f"找到 {len(png_files)} 個 PNG 文件和 {len(json_files)} 個 JSON 文件，開始轉換...\n")
         
         success_count = 0
@@ -215,5 +222,20 @@ class PNGBatchConverter:
         print(f"失敗: {fail_count} 個")
 
 if __name__ == "__main__":
-    converter = PNGBatchConverter()
+    print("請選擇轉換模式:")
+    print("1. 簡轉繁 (簡體中文 → 繁體中文)")
+    print("2. 繁轉簡 (繁體中文 → 簡體中文)")
+    
+    choice = input("請輸入選項 (1 或 2): ").strip()
+    
+    if choice == '1':
+        mode = 's2t'
+    elif choice == '2':
+        mode = 't2s'
+    else:
+        print("無效的選項，使用預設模式: 簡轉繁")
+        mode = 's2t'
+    
+    print()
+    converter = PNGBatchConverter(mode=mode)
     converter.batch_convert()
