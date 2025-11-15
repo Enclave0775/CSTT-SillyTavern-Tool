@@ -1,6 +1,6 @@
 # CSTT - SillyTavern 角色卡簡繁轉換工具
 
-CSTT (Chinese Simplified to Traditional) 是一個專為 [SillyTavern](https://github.com/SillyTavern/SillyTavern) 用戶設計的 Python 命令列工具，用於批量將角色卡（PNG 檔）和對話記錄（JSON 檔）從簡體中文轉換為繁體中文。
+CSTT (Chinese Simplified Traditional Transformer) 是一個專為 [SillyTavern](https://github.com/SillyTavern/SillyTavern) 用戶設計的 Python 命令列工具，用於批量將角色卡（PNG 檔）和對話記錄（JSON 檔）從簡體中文轉換為繁體中文。
 
 此工具的核心功能是處理 SillyTavern 的角色卡，它能智慧地解析 PNG 檔中包含的角色資料。
 
